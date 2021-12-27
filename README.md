@@ -41,10 +41,10 @@ export default class MyControlller extends Controller {
 ```ecmascript 6
 import MyController from './my-controller.js'
 
-export default class AdminApi extends Controller {
+export default class IndexController extends Controller {
     constructor(config) {
         super(config);
-        this.use('/my', new MyController(config))
+        this.use('/my', new MyController(config)) // IndexController的基地址是/，所以MyController中所有接口的基地址都是 /my/
     }
 }
 ```
@@ -69,28 +69,28 @@ export default class MyControlller extends Controller {
         ctx.body = []
     }
 
-    // 对应的请求：POST /admin-api/my/users
+    // 对应的请求：POST /my/users
     async addUser(ctx) {
         const data = ctx.request.body
         // 处理数据
         return data
     }
 
-    // 对应的请求，例如要删除ID=1的用户：DELETE /admin-api/my/users/1
+    // 对应的请求，例如要删除ID=1的用户：DELETE /my/users/1
     async deleteUser(ctx) {
         const { id } = ctx.params
         // 处理数据
         ctx.body = { ok: true }
     }
 
-    // 对应的请求，例如要替换ID=1的用户：PUT /admin-api/my/users/1
+    // 对应的请求，例如要替换ID=1的用户：PUT /my/users/1
     async replaceUser(ctx) {
         const data = ctx.request.body
         // 处理数据
         ctx.body = { ok: true }
     }
 
-    // 对应的请求，例如要更新ID=1的用户：PATCH /admin-api/my/users/1
+    // 对应的请求，例如要更新ID=1的用户：PATCH /my/users/1
     async updateUser(ctx) {
         const data = ctx.request.body
         // 处理数据
