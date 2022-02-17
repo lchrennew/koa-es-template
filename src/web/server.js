@@ -4,7 +4,7 @@ import { createOptions } from './options.js';
 
 async function createApp(options) {
     const logger = options.getLogger('server.js');
-    const eventBus = new EventEmitter();
+    const eventBus = new EventEmitter.EventEmitter2();
 
     const config = {
         eventBus,
