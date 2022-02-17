@@ -1,13 +1,12 @@
 import cors from '@koa/cors'
 import Koa from 'koa'
-import koaBody from 'koa-body';
+import body from 'koa-body';
 import compress from 'koa-compress'
 import error from 'koa-error';
-import requestLogger from './middlewares/requestLogger.js';
-import responseTime from './middlewares/responseTime.js';
-import IndexController from './routes/index.js'
+import requestLogger from './middlewares/request-logger.js';
+import responseTime from './middlewares/response-time.js';
 
-export default function (config) {
+export default config => {
     const app = new Koa()
     config.preHook?.(app)
 
@@ -16,11 +15,11 @@ export default function (config) {
         .use(cors({ credentials: true }))
         .use(compress())
         .use(responseTime(config))
-        .use(koaBody())
+        .use(body())
 
     config.preRouterHook?.(app)
 
-    app.use(new IndexController(config).routes())
+    app.use(new config.index?.(config).routes)
     if (process.env.NODE_ENV !== 'production') {
         app.use(error());
     }

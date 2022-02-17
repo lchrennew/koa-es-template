@@ -16,6 +16,10 @@ class Controller {
         this.eventBus = config.eventBus
     }
 
+    get routes() {
+        return this.router.routes()
+    }
+
     get(path, handlers,) {
         const handler = handlers?.map?.(h => h?.bind(this)) ?? [ handlers?.bind(this) ]
         handler && this.router.get(
@@ -65,11 +69,7 @@ class Controller {
     }
 
     use(path, controller) {
-        this.router.use(path, controller.routes())
-    }
-
-    routes() {
-        return this.router.routes()
+        this.router.use(path, controller.routes)
     }
 }
 
