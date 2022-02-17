@@ -1,6 +1,6 @@
 import cors from '@koa/cors'
 import Koa from 'koa'
-import body from 'koa-body';
+import body from 'es-koa-body';
 import compress from 'koa-compress'
 import error from 'koa-error';
 import requestLogger from './middlewares/request-logger.js';
