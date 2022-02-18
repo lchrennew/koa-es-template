@@ -1,9 +1,13 @@
 import './utils/env.js'
 import { create, start } from "./web/server.js";
-import controller from "./web/controller.js";
-import { defaultLogProvider } from './utils/logger.js'
+import Controller from "./web/controller.js";
+import { getLogger, defaultLogProvider, useLogProvider } from 'es-get-logger'
 
-export const createServer = create
-export const startServer = start
-export const Controller = controller
-export const getLogger = defaultLogProvider
+export {
+    create as createServer,
+    start as startServer,
+    Controller,
+    getLogger,
+    defaultLogProvider,
+    useLogProvider,
+}

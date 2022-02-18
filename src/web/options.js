@@ -1,5 +1,5 @@
 import merge from 'deepmerge';
-import { defaultLogProvider, validateLogProvider } from '../utils/logger.js';
+import { getLogger, useLogProvider } from "es-get-logger";
 
 const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
 
@@ -16,7 +16,7 @@ const defaultOptions = () => ({
     ui: {},
     importFile: undefined,
     dropBeforeImport: false,
-    getLogger: defaultLogProvider,
+    getLogger,
     disableDBMigration: true,
     start: true,
 });
@@ -28,7 +28,7 @@ export const createOptions = (opts = {}) => {
         ? { path: options.pipe }
         : { port: options.port, host: options.host };
 
-    validateLogProvider(options.getLogger);
+    useLogProvider(options.getLogger);
 
     return options;
 }
