@@ -1,6 +1,6 @@
 {
   "name": "koa-es-template",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Koa template for node.js high version via es",
   "main": "src/index.js",
   "author": "Lichun",
