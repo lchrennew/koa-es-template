@@ -5,6 +5,7 @@ import compress from 'koa-compress'
 import error from 'koa-error';
 import requestLogger from './middlewares/request-logger.js';
 import responseTime from './middlewares/response-time.js';
+import Controller from "./controller.js";
 
 export default config => {
     const app = new Koa()
@@ -19,7 +20,9 @@ export default config => {
 
     config.preRouterHook?.(app)
 
-    app.use(new config.index?.(config).routes)
+    const index = config.index ?? Controller
+    app.use(new index(config).routes)
+
     if (process.env.NODE_ENV !== 'production') {
         app.use(error());
     }
