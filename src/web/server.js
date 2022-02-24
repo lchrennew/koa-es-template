@@ -33,6 +33,16 @@ const createApp = async options => {
     });
 };
 
+/**
+ *
+ * @param opts {{index:Controller, preHook, preRouterHook, baseUriPath, listen }}
+ * @return {Promise<unknown>}
+ */
 export const start = async opts => createApp(createOptions({ start: true, ...opts }));
 
+/**
+ *
+ * @param opts {{index:Controller, preHook, preRouterHook, baseUriPath, listen }}
+ * @return {Promise<unknown>}
+ */
 export const create = async opts => createApp(createOptions({ start: false, ...opts }));

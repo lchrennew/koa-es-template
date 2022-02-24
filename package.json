@@ -7,9 +7,6 @@
   "license": "MIT",
   "private": false,
   "type": "module",
-  "scripts": {
-    "start": "nodemon src/index.js"
-  },
   "dependencies": {
     "@koa/cors": "^3.1.0",
     "@koa/router": "^10.1.1",
@@ -21,10 +18,12 @@
     "koa": "^2.13.4",
     "koa-compress": "^5.1.0",
     "koa-error": "^3.2.0",
-    "log4js": "^6.3.0",
-    "node-fetch": "^3.1.0"
+    "log4js": "^6.4.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
-  }
+  },
+  "files": [
+    "src"
+  ]
 }
