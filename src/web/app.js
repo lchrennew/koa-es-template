@@ -6,6 +6,7 @@ import error from 'koa-error';
 import requestLogger from './middlewares/request-logger.js';
 import responseTime from './middlewares/response-time.js';
 import Controller from "./controller.js";
+import errorLogger from "./middlewares/error-logger.js";
 
 export default config => {
     const app = new Koa()
@@ -17,6 +18,7 @@ export default config => {
         .use(compress())
         .use(responseTime(config))
         .use(body())
+        .use(errorLogger(config))
 
     config.preRouterHook?.(app)
 
