@@ -80,7 +80,7 @@ class Controller {
     }
 
     use(path, controller) {
-        this.router.use(path, controller.routes)
+        this.router.use(path, new controller(this.config).routes)
     }
 }
 
