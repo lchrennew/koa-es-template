@@ -12,7 +12,10 @@ class Controller {
     router;
     eventBus;
 
-    constructor(config) {
+    middlewares
+
+    constructor(config, ...middlewares) {
+        this.middlewares = middlewares;
         this.router = new Router().prefix(config.baseUriPath)
         this.config = config;
         this.eventBus = config.eventBus
@@ -79,8 +82,8 @@ class Controller {
         );
     }
 
-    use(path, controller) {
-        this.router.use(path, new controller(this.config).routes)
+    use(path, controller, ...middlewares) {
+        this.router.use(path, new controller(this.config, ...this.middlewares, ...middlewares).routes)
     }
 }
 
