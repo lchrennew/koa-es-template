@@ -6,7 +6,7 @@ export default config => {
         await next().catch(error => {
             logger.error(
                 ctx.method,
-                ctx.path,
+                ctx.href,
                 error)
         })
         let time = process.hrtime(start);
