@@ -12,6 +12,6 @@ export default config => {
                 ctx.status,
                 ctx.response.headers['x-response-time'],
                 ctx.method,
-                ctx.path);
+                ctx.href);
     };
 }
