@@ -4,7 +4,7 @@ import { getLogger, useLogProvider } from "es-get-logger";
 const THIRTY_DAYS = 30 * 24 * 60 * 60 * 1000;
 
 const defaultOptions = () => ({
-    port: process.env.HTTP_PORT || process.env.PORT || 4242,
+    port: process.env.HTTP_PORT || process.env.PORT || 80,
     host: process.env.HTTP_HOST || '0.0.0.0',
     pipe: undefined,
     baseUriPath: process.env.BASE_URI_PATH || '',
