@@ -1,6 +1,7 @@
 import EventEmitter from 'eventemitter2';
 import getApp from './app.js';
 import { createOptions } from './options.js';
+import http2 from 'http2'
 
 const createApp = async options => {
     const logger = options.getLogger('server.js');
@@ -22,9 +23,10 @@ const createApp = async options => {
         };
 
         if (options.start) {
-            const server = app.listen(options.listen, () =>
-                logger.info(`${process.env.SERVER_NAME} has started.`, server.address()),
-            );
+            const server = http2.createServer(options, app.callback())
+                .listen(
+                    options.listen,
+                    () => logger.info(`${process.env.SERVER_NAME} has started.`, server.address()))
             server.on('listening', () => resolve({ ...payload, server }));
             server.on('error', reject);
         } else {
@@ -38,11 +40,11 @@ const createApp = async options => {
  * @param opts {{index:Controller, preHook, preRouterHook, baseUriPath, listen }}
  * @return {Promise<unknown>}
  */
-export const start = async opts => createApp(createOptions({ start: true, ...opts }));
+export const start2 = async opts => createApp(createOptions({ start: true, ...opts }));
 
 /**
  *
  * @param opts {{index:Controller, preHook, preRouterHook, baseUriPath, listen }}
  * @return {Promise<unknown>}
  */
-export const create = async opts => createApp(createOptions({ start: false, ...opts }));
+export const create2 = async opts => createApp(createOptions({ start: false, ...opts }));
