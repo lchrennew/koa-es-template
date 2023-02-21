@@ -30,6 +30,7 @@ class Controller {
         const handler = handlers?.map?.(h => h?.bind(this)) ?? [ handlers?.bind(this) ]
         handler && this.router.all(
             path,
+            ...this.middlewares,
             ...handler
         );
     }
@@ -38,6 +39,7 @@ class Controller {
         const handler = handlers?.map?.(h => h?.bind(this)) ?? [ handlers?.bind(this) ]
         handler && this.router.get(
             path,
+            ...this.middlewares,
             ...handler
         );
     }
@@ -46,6 +48,7 @@ class Controller {
         const handler = handlers?.map?.(h => h?.bind(this)) ?? [ handlers?.bind(this) ]
         handler && this.router.post(
             path,
+            ...this.middlewares,
             ...handler
         );
     }
@@ -54,6 +57,7 @@ class Controller {
         const handler = handlers?.map?.(h => h?.bind(this)) ?? [ handlers?.bind(this) ]
         handler && this.router.put(
             path,
+            ...this.middlewares,
             ...handler,
         );
     }
@@ -62,6 +66,7 @@ class Controller {
         const handler = handlers?.map?.(h => h?.bind(this)) ?? [ handlers?.bind(this) ]
         handler && this.router.delete(
             path,
+            ...this.middlewares,
             ...handler,
         );
     }
@@ -70,6 +75,7 @@ class Controller {
         const handler = handlers?.map?.(h => h?.bind(this)) ?? [ handlers?.bind(this) ]
         handler && this.router.patch(
             path,
+            ...this.middlewares,
             ...handler,
         );
     }
@@ -77,6 +83,7 @@ class Controller {
     upload(path, filehandler, handler,) {
         this.router.post(
             path,
+            ...this.middlewares,
             filehandler,
             handler.bind(this),
         );
