@@ -1,6 +1,6 @@
 {
   "name": "koa-es-template",
-  "version": "1.0.28",
+  "version": "1.0.29",
   "description": "Koa template for node.js high version via es",
   "main": "src/index.js",
   "author": "Lichun",
@@ -14,7 +14,7 @@
     "dotenv-flow": "^3.2.0",
     "es-get-logger": "^1.0.2",
     "es-koa-body": "^4.2.3",
-    "es-koa-error": "^1.0.0",
+    "es-koa-error": "^1.0.1",
     "eventemitter2": "^6.4.9",
     "koa": "^2.14.2",
     "koa-compress": "^5.1.1"
