@@ -15,9 +15,9 @@ export default config => {
     app
         .use(requestLogger(config))
         .use(cors({ credentials: true }))
-        .use(compress())
+        .use(compress(config?.compress))
         .use(responseTime(config))
-        .use(body())
+        .use(body(config?.body))
         .use(errorLogger(config))
 
     config.preRouterHook?.(app)
