@@ -7,6 +7,8 @@ import requestLogger from './middlewares/request-logger.js';
 import responseTime from './middlewares/response-time.js';
 import Controller from "./controller.js";
 import errorLogger from "./middlewares/error-logger.js";
+import PrometheusExporter from "./middlewares/prometheus-exporter.js";
+import prometheusExporter from "./middlewares/prometheus-exporter.js";
 
 export default config => {
     const app = new Koa()
@@ -14,7 +16,7 @@ export default config => {
 
     app
         .use(requestLogger(config))
-        .use(cors({ credentials: true }))
+        .use(cors({ credentials: true, privateNetworkAccess: true }))
         .use(compress(config?.compress))
         .use(responseTime(config))
         .use(body(config?.body))
@@ -22,8 +24,10 @@ export default config => {
 
     config.preRouterHook?.(app)
 
-    const index = config.index ?? Controller
-    app.use(new index(config).routes)
+    app.use(new PrometheusExporter(config).routes)
+    const index = new (config.index ?? Controller)(config)
+    index.get('/metrics', prometheusExporter(config))
+    app.use(index.routes)
 
     if (process.env.NODE_ENV !== 'production') {
         app.use(error());
