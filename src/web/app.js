@@ -7,7 +7,6 @@ import requestLogger from './middlewares/request-logger.js';
 import responseTime from './middlewares/response-time.js';
 import Controller from "./controller.js";
 import errorLogger from "./middlewares/error-logger.js";
-import PrometheusExporter from "./middlewares/prometheus-exporter.js";
 import prometheusExporter from "./middlewares/prometheus-exporter.js";
 
 export default config => {
@@ -24,7 +23,6 @@ export default config => {
 
     config.preRouterHook?.(app)
 
-    app.use(new PrometheusExporter(config).routes)
     const index = new (config.index ?? Controller)(config)
     index.get('/metrics', prometheusExporter(config))
     app.use(index.routes)
