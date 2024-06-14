@@ -8,11 +8,14 @@ import responseTime from './middlewares/response-time.js';
 import Controller from "./controller.js";
 import errorLogger from "./middlewares/error-logger.js";
 import prometheusExporter from "./middlewares/prometheus-exporter.js";
+import { tpsCollector } from "./middlewares/tps-collector.js";
 
 export default config => {
     const app = new Koa()
-    config.preHook?.(app)
+    config.preHook?.(app, config)
 
+    if (process.env.USE_TPS_COLLECTOR || config.useTpsCollector)
+        app.use(tpsCollector(config))
     app
         .use(requestLogger(config))
         .use(cors({ credentials: true, privateNetworkAccess: true }))

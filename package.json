@@ -12,6 +12,7 @@
     "@koa/router": "^12.0.1",
     "deepmerge": "^4.3.1",
     "dotenv-flow": "^4.1.0",
+    "es-fetch-api": "^1.1.9",
     "es-get-logger": "^1.0.2",
     "es-koa-body": "^4.2.7",
     "es-koa-error": "^1.0.1",
