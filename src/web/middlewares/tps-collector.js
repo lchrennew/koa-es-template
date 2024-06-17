@@ -9,18 +9,18 @@ const host = process.env.HOSTNAME
 
 export const tpsCollector = config => {
     const logger = config.getLogger('TPS_COLLECTOR');
-    const tpsBuffer = []
-    const timeBox = { tps: 0 }
+    const timeBox = []
+    const tpsBuffer = { tps: 0 }
 
     setInterval(() => {
-        const { tps } = timeBox
-        timeBox.tps = 0
-        tpsBuffer.push({ tps })
+        const { tps } = tpsBuffer
+        tpsBuffer.tps = 0
+        timeBox.push({ tps })
     }, second)
 
     setInterval(() => {
-        const tps = [ ...tpsBuffer ]
-        tpsBuffer.length = 0
+        const tps = [ ...timeBox ]
+        timeBox.length = 0
         const api = getApi()
         const data = { server, host, tps }
         logger.info('Collecting TPS Data: ', data)
@@ -29,7 +29,7 @@ export const tpsCollector = config => {
     }, minute)
 
     return async (ctx, next) => {
-        timeBox.tps++
+        tpsBuffer.tps++
         await next()
     }
 }
