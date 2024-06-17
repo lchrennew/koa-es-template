@@ -19,7 +19,7 @@ export const tpsCollector = config => {
     }, second)
 
     setInterval(() => {
-        const tps = [ ...timeBox ]
+        const tps = timeBox.map(({ tps = 0 }) => tps)
         timeBox.length = 0
         const api = getApi()
         const data = { server, host, tps }
