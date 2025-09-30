@@ -1,6 +1,6 @@
 {
   "name": "koa-es-template",
-  "version": "1.0.46",
+  "version": "1.0.47",
   "description": "Koa template for node.js high version via es",
   "main": "src/index.js",
   "author": "Lichun",
@@ -9,7 +9,7 @@
   "type": "module",
   "dependencies": {
     "@koa/cors": "^5.0.0",
-    "@koa/router": "^12.0.1",
+    "@koa/router": "^14.0.0",
     "deepmerge": "^4.3.1",
     "dotenv-flow": "^4.1.0",
     "es-fetch-api": "^1.1.9",
@@ -17,12 +17,12 @@
     "es-koa-body": "^4.2.7",
     "es-koa-error": "^1.0.1",
     "eventemitter2": "^6.4.9",
-    "koa": "^2.15.3",
+    "koa": "^3.0.1",
     "koa-compress": "^5.1.1",
-    "prom-client": "^15.1.2"
+    "prom-client": "^15.1.3"
   },
   "devDependencies": {
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.1.10"
   },
   "files": [
     "src"
