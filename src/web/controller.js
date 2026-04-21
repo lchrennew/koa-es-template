@@ -15,7 +15,7 @@ class Controller {
     middlewares
 
     constructor(config, ...middlewares) {
-        this.middlewares = middlewares;
+        this.middlewares = middlewares?.flat();
         this.router = new Router().prefix(config.baseUriPath)
         this.config = config;
         this.eventBus = config.eventBus
